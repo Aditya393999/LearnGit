@@ -1,0 +1,35 @@
+public void Post ( [FromBody] Student  student)
+{
+	using  ( StudentDBContext dbContext = new StudentDBContext())
+	{
+		dbContext.Students.Add(student);
+
+		dbContext.SaveChanges();
+
+
+
+
+
+
+
+
+public HttpResponseMessage Post([FromBody] Student  student)
+{
+	try
+	{
+		using  ( StudentDBContext dbContext = new StudentDBContext())
+		{
+		dbContext.Students.Add(student);
+		dbContext.SaveChanges();
+		var message = Request.CreateResponse(HttpStatusCode.Created, student);
+	
+		return message;
+		}
+
+	}
+	Catch (Exception ex0
+	{
+	Return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+	}
+}
+
